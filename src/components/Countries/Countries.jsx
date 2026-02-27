@@ -1,12 +1,15 @@
 import React, { use, useState } from 'react';
 import Country from '../Country/Country';
 import './Countries.css'
-const countries = ({ countriesPromise }) => {
+const Countries = ({ countriesPromise }) => {
     const [visitedCountries, setVisitedCountries] = useState([]);
 
 
     const handleVisitedCountries = (country) => {
         console.log('handle visited country clicked',country)
+
+        const newVisitedCountries =[...visitedCountries, country];
+        setVisitedCountries(newVisitedCountries)
     }
 
     const countriesData = use(countriesPromise);
@@ -15,7 +18,12 @@ const countries = ({ countriesPromise }) => {
     return (
         <div>
             <h1>In the Countries:{countries.length}</h1>
-            <h3>Total Country Visited: </h3>
+            <h3>Total Country Visited: {visitedCountries.length} </h3>
+            <ol>
+                {
+                    visitedCountries.map(country => <li>{country.name.common}</li>)
+                }
+            </ol>
             <div className='countries'>
                 {
                     countries.map(country => <Country
@@ -29,4 +37,4 @@ const countries = ({ countriesPromise }) => {
     );
 };
 
-export default countries;
+export default Countries;

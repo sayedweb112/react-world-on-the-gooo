@@ -37,7 +37,7 @@ const Country = ({ country,handleVisitedCountries }) => {
             <h4>Population:{country.population.population}</h4>
             <button onClick={handleVisited}>
                 {
-                    !visited ? 'Visited' : 'not visited'
+                    visited ? 'Visited' : 'not visited'
                 }
             </button>
         </div>
